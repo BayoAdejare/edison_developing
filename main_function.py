@@ -122,21 +122,18 @@ def alexa():
 			led_status.write(0)
 
 def start():
-	last = mGestureTirgger
+	last = button.read()
 	while True:
-		val = mGestureTirgger
+		val = button.read()
 		if val != last:
 			last = val
 			if val == 0 and recorded == True:
-				print "released!!" 
 				rf = open(path+'recording.wav', 'w') 
 				rf.write(audio)
 				rf.close()
 				inp = None
 				alexa()
-				print "done" 
 			elif val == 1:
-				print "pressed"
 				led_record.write(1)
 				inp = alsaaudio.PCM(alsaaudio.PCM_CAPTURE, alsaaudio.PCM_NORMAL, device)
 				inp.setchannels(1)
@@ -149,61 +146,10 @@ def start():
 					audio += data
 				recorded = True
 		elif val == 1:
-			if inp is not None: 
-				l, data = inp.read()
-				if l:
-					audio += data
-
-					
-def camera_gesture_trigger():
-	# Capture frame-by-frame
-	ret, frame = cap.read()
-	# Our operations on the frame come here
-	gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-	blur = cv2.GaussianBlur(gray,(5,5),0)
-	ret,thresh1 = cv2.threshold(blur,70,255,cv2.THRESH_BINARY_INV+cv2.THRESH_OTSU)
-		
-	contours, hierarchy = cv2.findContours(thresh1,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
-	max_area=0
-	   
-	for i in range(len(contours)):
-		cnt=contours[i]
-		area = cv2.contourArea(cnt)
-		if(area>max_area):
-			max_area=area
-			ci=i
-	cnt=contours[ci]
-	hull = cv2.convexHull(cnt)
-	moments = cv2.moments(cnt)
-
-	cnt = cv2.approxPolyDP(cnt,0.01*cv2.arcLength(cnt,True),True)
-	hull = cv2.convexHull(cnt,returnPoints = False)
-
-	defects = cv2.convexityDefects(cnt,hull)					
+			l, data = inp.read()
+			if l:
+				audio += data
 	
-	if defects is not None:			
-		if defects.shape[0] >= 5:
-			return 1
-			
-	return 0
-	
-def camera_gesture_thread( threadName, delay):
-	global mGestureTirgger
-	print "start camera thread!!"
-	trigger = 0
-	counter = 0
-	while True:
-		trigger = camera_gesture_trigger()
-		if trigger == 1:
-			counter+=1
-		else:
-			counter = 0
-			mGestureTirgger = 0
-			
-		if counter > 5:
-			mGestureTirgger = 1 
-		
-
 if __name__ == "__main__":
 	##MRAA output
 	led_status.dir(mraa.DIR_OUT)
@@ -221,11 +167,6 @@ if __name__ == "__main__":
 		led_status.write(1)
 		time.sleep(.1)
 		led_status.write(0)
-	try:
-		thread.start_new_thread( camera_gesture_thread, ("Thread-1", 2, ) )
-	except:
-		print "Error: unable to start thread"
-   
 	start()
 	#camera_detect()
 	
