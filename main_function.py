@@ -12,10 +12,10 @@ from creds import *
 import requests
 import json
 import re
-import numpy as np
-import cv2
-import thread
-import time
+#import numpy as np
+#import cv2
+#import thread
+#import time
 
 
 from memcache import Client
@@ -27,7 +27,7 @@ from memcache import Client
 button = mraa.Gpio(2) #GPIO Pin with button connected
 led_record = mraa.Gpio(3) # LED for recording in progress (old 25)
 led_status = mraa.Gpio(4) # LED for Alexa status (old 24)
-cap = cv2.VideoCapture(0) #openCV camera device
+#cap = cv2.VideoCapture(0) #openCV camera device
 
 #device = "plughw:1" # Name of your microphone/soundcard in arecord -L
 device = "plughw:3,0" # Name of your microphone/soundcard in arecord -L
@@ -168,5 +168,3 @@ if __name__ == "__main__":
 		time.sleep(.1)
 		led_status.write(0)
 	start()
-	#camera_detect()
-	

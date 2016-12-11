@@ -1,11 +1,10 @@
 #! /bin/bash
 
 opkg update
-opkg install libasound2-dev python-pip mpg123 alsa-utils alsa-lib-dev  python-audio python-opencv
+opkg install libasound2-dev python-pip mpg123 alsa-utils alsa-lib-dev  python-audio 
 pip install -r requirements.txt
 cp initd_alexa.sh /etc/alexa
-cd /etc
-ln -s ../alexa S99alexa
+ln -s /etc/alexa /etc/S99alexa
 touch /var/log/alexa.log
 
 #Install MRAA library from Intel GitHub
@@ -41,9 +40,8 @@ echo "Enter your Security Client Secret:"
 read secret
 echo Client_Secret = \"$secret\" >> creds.py
 
-ip = `ifconfig wlan0 | grep "inet addr" | cut -d ':' -f 2 | cut -d ' ' -f 1`
-python ./auth_web.py 
+ip=`ifconfig wlan0 | grep "inet addr" | cut -d ':' -f 2 | cut -d ' ' -f 1`
+python ./auth_web.py
 echo "Open http://$ip:5000"
 
 echo "You can now reboot"
-

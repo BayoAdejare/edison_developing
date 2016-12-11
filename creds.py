@@ -2,11 +2,9 @@
 import os
 
 #Alexa Settings
-ProductID = ""
-Security_Profile_Description =""
-Security_Profile_ID  = ""
-Client_ID = ""
-Client_Secret = ""
-
-# Alexa Refresh Token
-refresh_token = ''
+ProductID = "VAL_Device"
+Security_Profile_Description = "VAL_Device"
+Security_Profile_ID = "amzn1.application.ba12fcd6b336493f8dbee0673ac06fe0"
+Client_ID = "amzn1.application-oa2-client.44335bffe1084f5cb355b19444575541"
+Client_Secret = "1989091d1392ee48adbdefbe8cf3e0d3729cbb74084d96b10d9113434344256b"
+refresh_token = "Atzr|IwEBIHBMXN8tRMho9bVaG4PrTC-gmwLvBNVkJRuEDE_yvNpXhVJNFzaoPundUYBHUyZy1O85yL0GYRZf94oCUCdRnEgmGPZMwlfgVWDAzBjbvocmKnkCKrrBrCkn4T5dsd7D_ZzvaYND8HGAVFx64d_GXnUlUgiT1oCny9WwLm-c7HmhPaHHjA2V4ooSbF6AXslqnaFQt_6Lrw2NKvm_3ovgf3PCPMZ_j_zppjDNcy215tHzp7foDa9ad8xYhNxZ8IDJ7OmiwCdgtucXsmcLx37nQWZ1q7JKUO7qz14WcS4a3OZAAzC6VCUd_h0R9b7mYYtCtaaBdEZ25gw802wbqqePkfBcckg_Ukbng8MkNhtZaTWmaFg3MATm04ZlcP0HCtUezBQv2xtEkGGBNAU2suKwZUaDuk9J8zVrgTfi9WddxrD86y_DSEzXA33FfLB_3W9GipCfQ3zGEsPdiO6-3N-ClAxr_d61OaGQSKba3e4TZ9JDLDHBaavYW9U34Hmp-6tB8oujhYrMKRuOylWTFbelzFRRGCtF08Arz3CG7eN5ja1Xww"
